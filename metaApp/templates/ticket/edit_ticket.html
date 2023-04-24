@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" overflow-x-auto  shadow-md rounded-lg">
+  <div class="p-4 bg-white rounded-lg shadow dark:bg-gray-900 sm:p-5">
+
+
+    <h1 class="mb-4 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-900">
+      Aggiungi Ticket
+    </h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="title" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+      <input type="text" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="title" name="title" value="{{ ticket.title }}" required>
+    </div>
+    <div class="form-group">
+      <label for="assignee" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Assignee</label>
+      <select class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="assignee" name="assignee">
+        <option value="">-- None --</option>
+        {% for user in users %}
+          {% if ticket.assignee == user %}
+            <option value="{{ user.id }}" selected>{{ user.username }}</option>
+          {% else %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="status" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Status:</label>
+      <select name="status"id="status" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          {% for choice in status_choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+      <textarea class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="description" name="description" rows="3" required>{{ ticket.description }}</textarea>
+    </div>
+    <button type="submit" class="mt-4 inline-flex items-center text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900">
+      Modifica
+  </button>
+  </form>
+  </div>
+</div>
+{% endblock %}

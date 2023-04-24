@@ -1,0 +1,31 @@
+<!-- templates/registration/login.html -->
+{% extends 'base.html' %}
+<!-- 
+    Questo template estende il template base.html 
+    per includere l'intestazione e il piè di pagina comuni. 
+-->
+
+{% block title %}Login{% endblock %}
+
+{% load tailwind_filters %}
+
+{% block content %}
+
+  <section class="">
+    
+    <div class="w-full bg-opacity-50 justify-center rounded-lg shadow-lg bg-gray-900 lg:max-w-xl p-6 space-y-8 sm:p-8">
+        <h2 class="text-2xl text-center font-bold text-white ">
+            Accedi a Meta Studio Tickets
+        </h2>
+        <form class="text-white" method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit" class="w-full px-5 py-3 text-base font-medium text-center text-white rounded-lg focus:ring-4 focus:ring-primary-900 border border-gray-300">Accedi</button>
+
+          
+        </form>
+    </div>
+
+  </section>
+
+{% endblock %}

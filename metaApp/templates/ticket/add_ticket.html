@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="overflow-x-auto p-4 rounded-lg shadow bg-opacity-50 bg-gray-900  sm:p-5">
+
+    <h1 class="mb-4 text-lg font-semibold text-left text-white ">
+      Aggiungi Ticket
+    </h1>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="form-group mb-2">
+        <label for="title" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Titolo</label>
+        <input type="text" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" id="title" name="title" required>
+      </div>
+
+      <div class="form-group flex gap-2 mt-4">
+        <div class="col w-1/2 flex flex-col">
+          <label for="assignee" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Assegnato</label>
+          <select class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" id="assignee" name="assignee">
+            <option value="">-- Nessuno --</option>
+            {% for user in users %}
+              <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col w-1/2 flex flex-col">
+          <label for="status" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Status:</label>
+          <select name="status"id="status" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              {% for choice in status_choices %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endfor %}
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-group mt-4">
+        <label for="description" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Dettagli</label>
+        <textarea name="description" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" id="description" name="description" rows="3" required></textarea>
+      </div>
+
+      <button type="submit" class="mt-4 inline-flex items-center text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900">
+          Aggiungi
+      </button>
+      
+    </form>
+
+  </div>
+{% endblock %}

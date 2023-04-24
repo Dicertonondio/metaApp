@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Clienti {% endblock %}
+
+{% block content %}   
+    <div class="transform transition duration-500 w-full rounded-lg shadow-lg bg-gray-900 hover:bg-opacity-80 rounded-lg bg-opacity-50">   
+        <div class="flex flex-col items-center py-10">        
+            
+            
+            <h5 class="mb-1 text-3xl text-gray-900 dark:text-white">Ciao, {{ user.username }}!</h5>
+            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Sfoglia tutta la lista dei ticket in questa pagina</p>
+        </div>
+    </div>
+    
+        
+    <div class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-2 my-2"> 
+        {% for cliente in cliente %}  
+            <a href="{% url 'client_by_id' cliente.id %}">           
+                <div class="h-48 min-h-fit transform transition duration-500 text-white flex flex-col p-6 rounded-lg shadow-lg hover:bg-opacity-80 rounded-lg shadow-lg bg-gray-900 rounded-lg bg-opacity-50">
+                        <h3 class="text-white text-l font-extrabold mt-3 mb-1">{{ cliente.nome }}</h3>
+                        <p class=" text-sm font-normal text-gray-500 dark:text-gray-400">{{ cliente.telefono }}</p>
+                        <p class=" text-sm font-normal text-gray-500 dark:text-gray-400">{{ cliente.indirizzo }}</p> 
+                        <p class=" text-sm font-normal text-gray-300 dark:text-gray-200">{{ cliente.piano }}</p>               
+                </div>
+            </a>
+        
+        {% empty %}   
+                </div>
+                <div class="transform transition duration-500 w-full rounded-lg shadow-lg bg-gray-900 hover:bg-opacity-80 rounded-lg bg-opacity-50">   
+                    <div class="flex flex-col items-center py-10">         
+                        <h5 class="mb-1 text-3xl text-gray-900 dark:text-white"></h5>
+                        <p class="mt-1 text-sm font-normal text-white">Non abbiamo ancora ticket da mostrare qui, torna più tardi</p>
+                    </div>
+                </div>
+        {% endfor %}   
+           
+
+        
+        
+</div>
+<button onclick="window.location.href='{% url 'add_client' %}'" type="button" class="bg-opacity-50 m-5 inline-flex items-center text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900">
+            
+    Aggiungi
+</button>
+{% endblock %}

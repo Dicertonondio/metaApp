@@ -1,0 +1,70 @@
+{% load static %}
+
+<nav class="transform transition duration-500 hover:bg-opacity-60 m-2 rounded-lg bg-opacity-50 border border-black  bg-gray-900">
+    <div class="max-w-screen-xl flex flex-col items-center p-4">
+    
+   <!-- OLD LOGO SECTION
+        <a href="{% url 'home' %}" class="flex items-center ">
+            <svg class="inline-block" id="Livello_1" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 559.2 518">
+            <defs>
+                <style>
+                .cls-1 {
+                    fill: #fff;
+                }
+                </style>
+            </defs>
+            <path class="cls-1" d="M510.39,518h-93.91c-22.85,0-42.91-16.2-47.7-38.54l-40.66-203.72-14.84,44.94c-5.34,14.42-18.7,23.74-34.09,23.74h-.04c-15.39,0-28.75-9.37-34.09-23.79l-.08-.25-14.5-44.09-40.15,203c-4.79,22.47-24.85,38.71-47.74,38.71H48.8c-14.42,0-27.98-6.32-37.27-17.3-9.29-10.98-13.23-25.44-10.85-39.64L71.78,41.15C75.59,18.68,92.68,2.82,115.36,.7c22.64-2.12,42.44,10.35,50.28,31.71l.08,.25,61.22,186.04,4.62-23.32c5.72-26.75,28.07-38.71,47.7-38.71h.04c19.63,0,41.97,11.91,47.7,38.54l4.66,23.36L393.45,31.86C401.34,10.54,421.14-1.89,443.78,.23c22.64,2.12,39.77,17.98,43.54,40.45l71.19,420.42c2.42,14.2-1.53,28.62-10.85,39.64-9.29,10.94-22.85,17.26-37.27,17.26ZM337.44,247.67l45.66,228.87c3.35,15.52,17.38,26.88,33.37,26.88h93.91c10.09,0,19.59-4.41,26.07-12.13,6.49-7.72,9.29-17.81,7.59-27.73L472.86,43.14c-3.22-19.08-18.44-27.18-30.48-28.32-12.04-1.14-28.45,3.99-35.19,22.05l-69.74,210.8ZM119.9,15.16c-1.1,0-2.16,.04-3.18,.13-12.04,1.1-27.3,9.2-30.53,28.32L15.09,463.52c-1.7,9.92,1.1,20.05,7.59,27.73,6.49,7.72,16.03,12.13,26.07,12.13h93.83c16.03,0,30.06-11.36,33.41-27.05l45.15-228.36L151.87,37.42c-6.15-16.54-20.39-22.26-31.97-22.26Zm138.98,300.52c3.86,10.39,13.02,14.08,20.31,14.12h0c7.29,0,16.45-3.69,20.31-14.08l22.85-69.02-9.67-48.5c-4.28-19.8-20.65-26.88-33.37-26.88h-.04c-12.72,0-29.13,7.08-33.37,27.05l-9.62,48.67,22.6,68.64Z"/>
+            </svg>
+            <span class="self-center ml-2 text-2xl font-semibold whitespace-nowrap dark:text-white">Meta Studio</span><span class="bg-red-100 text-red-800 text-2xs font-medium mb-6 ml-1 mr-2 px-1.5 py-0.5 rounded-lg dark:bg-gray-800 dark:text-orange-400 border border-orange-400">Pro</span>
+        </a>
+    -->
+        <!-- LOGO SECTION -->
+        <a href="{% url 'home' %}" class="">
+            <img class="cursor-pointer" src="{% static 'img/metapro.svg' %}" alt="User dropdown">
+        </a>
+
+    
+    {% if user.is_authenticated %}
+
+        <!-- Dropdown BUTTON 
+            <div class="flex md:order-2">
+                
+                <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full bg-white cursor-pointer border border-gray-400 hover:ring-2" src="{{ MEDIA_URL }}{{ user.profile.avatar_url }}" alt="User dropdown">
+            </div>
+        -->
+        <!-- Dropdown menu 
+            <div id="userDropdown" class="hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-900 dark:divide-gray-600">
+                <div class="px-4 py-3 text-sm text-gray-900 text-center dark:text-white">
+                    <div>{{ user.username }}</div>
+                    <div class="font-medium truncate">{{ user.email }}</div>
+                </div>
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                    <li>
+                        <a href="{% url 'profile' %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    </li>
+                    {% if user.is_staff %}
+                        <li>
+                            <a href="/admin" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Admin</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <div class="py-1">
+                    <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Esci</a>
+                </div>
+            </div>
+        -->
+
+    {% else %}
+        <div class="flex md:order-2">
+            <a href="{% url 'login' %}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 border border-gray-300">
+                Accedi
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </a>
+        </div>
+    {% endif %} 
+
+    </div>
+</nav>

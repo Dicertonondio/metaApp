@@ -1,0 +1,57 @@
+<!-- templates/base.html
+    Il template base.html è il template principale del sito 
+    web e definisce l'intestazione e il piè di pagina comuni 
+    a tutte le pagine.
+-->
+
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="it">
+
+    <head>
+            
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+
+
+        <title>Meta Studio Support | {% block title %}{% endblock %}</title>
+    
+    </head>
+
+    <body  class=" min-h-screen bg-gradient-to-br from-indigo-500 to-blue-500 pb-20" style="height:100%;">
+      <header >
+        {% include 'component/header.html' %}
+      </header>
+
+      <main  class="p-2 fade overflow-hidden	">
+        {% block content %}
+        {% endblock %}
+      </main>
+
+      {% if user.is_authenticated %}
+      <!-- OLD DIAL-MENU {% include 'component/dial-menu.html' %} -->
+        {% include 'component/bottom-navigation.html' %}
+      {% endif %}
+         
+      
+        
+      <style>
+        .fade {
+          transform: scale(0);
+          transition: transform 300ms ease-in-out;
+        }
+      </style>
+      
+      <script>
+        window.addEventListener('load', function() {
+          document.querySelector('.fade').style.transform = 'scale(1)';
+        });
+      </script>
+            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+    </body>
+
+</html>
